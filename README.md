@@ -5,12 +5,13 @@
 cd /basic
 ```
 
+
 ### option 1: run using 'make'
-1. clean mininet
+1. follow the virtual env setup
 ```sh
-make clean
+cat p4setup.bash
 ```
-2. run
+2. run mininet with the topology
 ```sh
 make run
 ```
@@ -52,4 +53,14 @@ mirroring_add 100 2
 9. In terminal h1, send a packet to h3
 ```sh
 ./send.py 10.0.3.3 "hi h3 from h1"
+```
+
+
+### Makefile relative path bug
+```sh
+code ~/tutorials/utils/Makefile
+```
+Make this change
+```python
+RUN_SCRIPT = ~/tutorials/utils/run_exercise.py
 ```
