@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: GPL-2.0-only
-# Reason-GPL: import-scapy
 import random
+import argparse
+import struct
+import netifaces as ni
+import time
 import socket
 import sys
 
-from scapy.all import IP, TCP, Ether, get_if_hwaddr, get_if_list, sendp
-
+from scapy.all import Packet, PacketListField, BitField, bind_layers, ShortField, IP, TCP, UDP, Ether, sendpfast, get_if_hwaddr, get_if_list, sendp, send
 
 def get_if():
     ifs=get_if_list()
@@ -19,21 +20,52 @@ def get_if():
         print("Cannot find eth0 interface")
         exit(1)
     return iface
-
+class interarrival(Packet):
+    name = "interarrival"
+    fields_desc=[BitField("interarrival_time", 0, 48)]
+    def extract_padding(self, p):
+        return "",p
 def main():
 
     if len(sys.argv)<3:
         print('pass 2 arguments: <destination> "<message>"')
         exit(1)
 
-    addr = socket.gethostbyname(sys.argv[1])
-    iface = get_if()
-
-    print("sending on interface %s to %s" % (iface, str(addr)))
-    pkt =  Ether(src=get_if_hwaddr(iface), dst='ff:ff:ff:ff:ff:ff')
-    pkt = pkt /IP(dst=addr) / TCP(dport=1234, sport=random.randint(49152,65535)) / sys.argv[2]
-    pkt.show2()
-    sendp(pkt, iface=iface, verbose=False)
+    iface = ni.interfaces()[1]
+    host_ip = ni.ifaddresses(iface)[ni.AF_INET][0]['addr']
+    dst_addr = socket.gethostbyname(sys.argv[1])
+    host_mac_addr = ni.ifaddresses(iface)[ni.AF_LINK][0]['addr']
+    pps=10
+    print("sending on interface %s to %s" % (iface, str(dst_addr)))
+    pkt =  Ether(src=host_mac_addr, dst='ff:ff:ff:ff:ff:ff')
+    probe_flag = 0
+    if len(sys.argv) > 3:
+        key = sys.argv[3]
+        protocol = sys.argv[4]
+        if key == "-p":
+            if protocol == "interarrival":
+                print("protocol matched interarrival")
+                pkt = pkt /IP(src=host_ip,dst=dst_addr, proto = int('FF', 16)) / interarrival()
+                pps = int(sys.argv[2])
+                probe_flag=2
+                print("sending packet at ", pps, " packets per second")
+            else:
+                print("Wrong protocol")
+                exit(1)
+    else: 
+        pkt = pkt /IP(src=host_ip,dst=dst_addr) / sys.argv[2]
+    if probe_flag == 1:
+        while 1:
+            print(("sending on interface %s to %s" % (iface, str(dst_addr))))
+            sendp(pkt, iface=iface, verbose=False)
+            pkt.show2()
+            time.sleep(0.01)
+    elif probe_flag == 2:
+        sendpfast(pkt, pps=pps, loop = 10000)
+    else:
+            print(("sending on interface %s to %s" % (iface, str(dst_addr))))
+            sendp(pkt, iface=iface, verbose=False)
+            pkt.show2()
 
 
 if __name__ == '__main__':
