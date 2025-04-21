@@ -168,31 +168,16 @@ class MITMTopo(Topo):
                                 json_path=json_path,
                                 thrift_port=9090,
                                 pcap_dump=pcap_dump)
-        switch2 = self.addSwitch("s2",
-                                sw_path=sw_path,
-                                json_path=json_path,
-                                thrift_port=9091,
-                                pcap_dump=pcap_dump)
-        switch3 = self.addSwitch("s3",
-                                sw_path=sw_path,
-                                json_path=json_path,
-                                thrift_port=9092,
-                                pcap_dump=pcap_dump)
         
         # Add 3 hosts
         hosts = [
             ("h1", "10.0.1.1/24", "00:04:00:00:00:01", switch1),
-            ("h2", "10.0.2.1/24", "00:04:00:00:00:02", switch2),
-            ("h3", "10.0.3.1/24", "00:04:00:00:00:03", switch3),
+            ("h2", "10.0.2.1/24", "00:04:00:00:00:02", switch1),
         ]
         
         for h_name, ip, mac, switch in hosts:
             host = self.addHost(h_name, ip=ip, mac=mac)
             self.addLink(host, switch)
-
-        # Add links between switches
-        self.addLink(switch1, switch2)
-        self.addLink(switch2, switch3)
 
 def main():
     topo = MITMTopo(args.behavioral_exe, args.json, args.thrift_port, args.pcap_dump)
@@ -203,24 +188,16 @@ def main():
     # Configure hosts
     h1 = net.get("h1")
     h2 = net.get("h2")
-    h3 = net.get("h3")
     
     h1.setARP("10.0.2.1", "00:04:00:00:00:02") # talks to h2
-    h1.setARP("10.0.3.1", "00:04:00:00:00:03") # talks to h3
 
     h2.setARP("10.0.1.1", "00:04:00:00:00:01") # talks to h1
-    h2.setARP("10.0.3.1", "00:04:00:00:00:03") # talks to h3
-
-    h3.setARP("10.0.1.1", "00:04:00:00:00:01") # talks to h1
-    h3.setARP("10.0.2.1", "00:04:00:00:00:02") # talks to h2
 
     h1.setDefaultRoute("dev eth0 via 10.0.1.1")
     h2.setDefaultRoute("dev eth0 via 10.0.2.1")
-    h3.setDefaultRoute("dev eth0 via 10.0.3.1")
 
     h1.describe()
     h2.describe()
-    h3.describe()
     
     print("Topology is ready!")
     CLI(net)
