@@ -8,9 +8,17 @@
         ["tmp_0", 32, false],
         ["tmp_1", 32, false],
         ["tmp_2", 32, false],
+        ["tmp_3", 32, false],
+        ["tmp_4", 32, false],
+        ["tmp_5", 32, false],
+        ["tmp_6", 32, false],
+        ["tmp_7", 48, false],
         ["flow_id_0", 16, false],
         ["interarrival_value_0", 48, false],
-        ["last_timestamp_0", 48, false]
+        ["num_packets_0", 48, false],
+        ["rolling_avg_0", 48, false],
+        ["last_timestamp_0", 48, false],
+        ["last_avg_0", 48, false]
       ]
     },
     {
@@ -67,15 +75,11 @@
       "name" : "interarrival_t",
       "id" : 4,
       "fields" : [
-        ["interarrival_value", 48, false]
-      ]
-    },
-    {
-      "name" : "metrics_t",
-      "id" : 5,
-      "fields" : [
-        ["timestamp_delta", 48, false],
-        ["avg_delta", 48, false]
+        ["interarrival_value", 48, false],
+        ["interarrival_avg", 48, false],
+        ["interarrival_stdev", 48, false],
+        ["num_packets", 48, false],
+        ["malicious_packet_flag", 8, false]
       ]
     }
   ],
@@ -112,13 +116,6 @@
       "name" : "interarrival",
       "id" : 4,
       "header_type" : "interarrival_t",
-      "metadata" : false,
-      "pi_omit" : true
-    },
-    {
-      "name" : "metrics",
-      "id" : 5,
-      "header_type" : "metrics_t",
       "metadata" : false,
       "pi_omit" : true
     }
@@ -228,7 +225,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "experimental.p4",
-        "line" : 257,
+        "line" : 294,
         "column" : 8,
         "source_fragment" : "MyDeparser"
       },
@@ -243,7 +240,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "experimental.p4",
-        "line" : 124,
+        "line" : 116,
         "column" : 42,
         "source_fragment" : "packet_ctr"
       },
@@ -257,9 +254,33 @@
       "id" : 0,
       "source_info" : {
         "filename" : "experimental.p4",
-        "line" : 126,
+        "line" : 118,
         "column" : 29,
         "source_fragment" : "last_timestamp_reg"
+      },
+      "size" : 65535,
+      "bitwidth" : 48
+    },
+    {
+      "name" : "MyIngress.num_packets_reg",
+      "id" : 1,
+      "source_info" : {
+        "filename" : "experimental.p4",
+        "line" : 119,
+        "column" : 29,
+        "source_fragment" : "num_packets_reg"
+      },
+      "size" : 65535,
+      "bitwidth" : 48
+    },
+    {
+      "name" : "MyIngress.rolling_avg_reg",
+      "id" : 2,
+      "source_info" : {
+        "filename" : "experimental.p4",
+        "line" : 120,
+        "column" : 29,
+        "source_fragment" : "rolling_avg_reg"
       },
       "size" : 65535,
       "bitwidth" : 48
@@ -286,7 +307,7 @@
       "id" : 1,
       "source_info" : {
         "filename" : "experimental.p4",
-        "line" : 235,
+        "line" : 272,
         "column" : 8,
         "source_fragment" : "update_checksum( ..."
       },
@@ -473,7 +494,7 @@
           ],
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 149,
+            "line" : 151,
             "column" : 48,
             "source_fragment" : "(bit<32>)flow_id"
           }
@@ -496,9 +517,161 @@
           ],
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 149,
+            "line" : 151,
             "column" : 8,
             "source_fragment" : "last_timestamp_reg.read(last_timestamp, (bit<32>)flow_id)"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_2"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "field",
+                    "value" : ["scalars", "flow_id_0"]
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 152,
+            "column" : 39,
+            "source_fragment" : "(bit<32>)flow_id"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "last_avg_0"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.rolling_avg_reg"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_2"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 152,
+            "column" : 8,
+            "source_fragment" : "rolling_avg_reg.read(last_avg, (bit<32>)flow_id)"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_3"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "field",
+                    "value" : ["scalars", "flow_id_0"]
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 154,
+            "column" : 42,
+            "source_fragment" : "(bit<32>)flow_id"
+          }
+        },
+        {
+          "op" : "register_read",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "num_packets_0"]
+            },
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.num_packets_reg"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_3"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 154,
+            "column" : 8,
+            "source_fragment" : "num_packets_reg.read(num_packets, (bit<32>)flow_id)"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "num_packets_0"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "field",
+                        "value" : ["scalars", "num_packets_0"]
+                      },
+                      "right" : {
+                        "type" : "hexstr",
+                        "value" : "0x000000000001"
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 157,
+            "column" : 8,
+            "source_fragment" : "num_packets = num_packets + 1"
           }
         },
         {
@@ -566,7 +739,381 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_2"]
+              "value" : ["scalars", "rolling_avg_0"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "field",
+                        "value" : ["scalars", "last_avg_0"]
+                      },
+                      "right" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "two_comp_mod",
+                              "left" : {
+                                "type" : "expression",
+                                "value" : {
+                                  "op" : ">>",
+                                  "left" : {
+                                    "type" : "expression",
+                                    "value" : {
+                                      "op" : "two_comp_mod",
+                                      "left" : {
+                                        "type" : "expression",
+                                        "value" : {
+                                          "op" : "-",
+                                          "left" : {
+                                            "type" : "expression",
+                                            "value" : {
+                                              "op" : "two_comp_mod",
+                                              "left" : {
+                                                "type" : "expression",
+                                                "value" : {
+                                                  "op" : "?",
+                                                  "left" : {
+                                                    "type" : "expression",
+                                                    "value" : {
+                                                      "op" : "&",
+                                                      "left" : {
+                                                        "type" : "expression",
+                                                        "value" : {
+                                                          "op" : "-",
+                                                          "left" : {
+                                                            "type" : "field",
+                                                            "value" : ["standard_metadata", "ingress_global_timestamp"]
+                                                          },
+                                                          "right" : {
+                                                            "type" : "field",
+                                                            "value" : ["scalars", "last_timestamp_0"]
+                                                          }
+                                                        }
+                                                      },
+                                                      "right" : {
+                                                        "type" : "hexstr",
+                                                        "value" : "0xffffffffffff"
+                                                      }
+                                                    }
+                                                  },
+                                                  "right" : {
+                                                    "type" : "hexstr",
+                                                    "value" : "0x000000000000"
+                                                  },
+                                                  "cond" : {
+                                                    "type" : "expression",
+                                                    "value" : {
+                                                      "op" : "!=",
+                                                      "left" : {
+                                                        "type" : "field",
+                                                        "value" : ["scalars", "last_timestamp_0"]
+                                                      },
+                                                      "right" : {
+                                                        "type" : "hexstr",
+                                                        "value" : "0x000000000000"
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              },
+                                              "right" : {
+                                                "type" : "hexstr",
+                                                "value" : "0x30"
+                                              }
+                                            }
+                                          },
+                                          "right" : {
+                                            "type" : "expression",
+                                            "value" : {
+                                              "op" : "two_comp_mod",
+                                              "left" : {
+                                                "type" : "field",
+                                                "value" : ["scalars", "last_avg_0"]
+                                              },
+                                              "right" : {
+                                                "type" : "hexstr",
+                                                "value" : "0x30"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "right" : {
+                                        "type" : "hexstr",
+                                        "value" : "0x30"
+                                      }
+                                    }
+                                  },
+                                  "right" : {
+                                    "type" : "hexstr",
+                                    "value" : "0x6"
+                                  }
+                                }
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x30"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffffffff"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 168,
+            "column" : 8,
+            "source_fragment" : "rolling_avg = last_avg + (bit<48>) diff"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "rolling_avg_0"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "?",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "?",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "-",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["standard_metadata", "ingress_global_timestamp"]
+                              },
+                              "right" : {
+                                "type" : "field",
+                                "value" : ["scalars", "last_timestamp_0"]
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "hexstr",
+                        "value" : "0x000000000000"
+                      },
+                      "cond" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "!=",
+                          "left" : {
+                            "type" : "field",
+                            "value" : ["scalars", "last_timestamp_0"]
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0x000000000000"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "&",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "+",
+                          "left" : {
+                            "type" : "field",
+                            "value" : ["scalars", "last_avg_0"]
+                          },
+                          "right" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "&",
+                              "left" : {
+                                "type" : "expression",
+                                "value" : {
+                                  "op" : "two_comp_mod",
+                                  "left" : {
+                                    "type" : "expression",
+                                    "value" : {
+                                      "op" : ">>",
+                                      "left" : {
+                                        "type" : "expression",
+                                        "value" : {
+                                          "op" : "two_comp_mod",
+                                          "left" : {
+                                            "type" : "expression",
+                                            "value" : {
+                                              "op" : "-",
+                                              "left" : {
+                                                "type" : "expression",
+                                                "value" : {
+                                                  "op" : "two_comp_mod",
+                                                  "left" : {
+                                                    "type" : "expression",
+                                                    "value" : {
+                                                      "op" : "?",
+                                                      "left" : {
+                                                        "type" : "expression",
+                                                        "value" : {
+                                                          "op" : "&",
+                                                          "left" : {
+                                                            "type" : "expression",
+                                                            "value" : {
+                                                              "op" : "-",
+                                                              "left" : {
+                                                                "type" : "field",
+                                                                "value" : ["standard_metadata", "ingress_global_timestamp"]
+                                                              },
+                                                              "right" : {
+                                                                "type" : "field",
+                                                                "value" : ["scalars", "last_timestamp_0"]
+                                                              }
+                                                            }
+                                                          },
+                                                          "right" : {
+                                                            "type" : "hexstr",
+                                                            "value" : "0xffffffffffff"
+                                                          }
+                                                        }
+                                                      },
+                                                      "right" : {
+                                                        "type" : "hexstr",
+                                                        "value" : "0x000000000000"
+                                                      },
+                                                      "cond" : {
+                                                        "type" : "expression",
+                                                        "value" : {
+                                                          "op" : "!=",
+                                                          "left" : {
+                                                            "type" : "field",
+                                                            "value" : ["scalars", "last_timestamp_0"]
+                                                          },
+                                                          "right" : {
+                                                            "type" : "hexstr",
+                                                            "value" : "0x000000000000"
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "right" : {
+                                                    "type" : "hexstr",
+                                                    "value" : "0x30"
+                                                  }
+                                                }
+                                              },
+                                              "right" : {
+                                                "type" : "expression",
+                                                "value" : {
+                                                  "op" : "two_comp_mod",
+                                                  "left" : {
+                                                    "type" : "field",
+                                                    "value" : ["scalars", "last_avg_0"]
+                                                  },
+                                                  "right" : {
+                                                    "type" : "hexstr",
+                                                    "value" : "0x30"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "right" : {
+                                            "type" : "hexstr",
+                                            "value" : "0x30"
+                                          }
+                                        }
+                                      },
+                                      "right" : {
+                                        "type" : "hexstr",
+                                        "value" : "0x6"
+                                      }
+                                    }
+                                  },
+                                  "right" : {
+                                    "type" : "hexstr",
+                                    "value" : "0x30"
+                                  }
+                                }
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0xffffffffffff"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "hexstr",
+                        "value" : "0xffffffffffff"
+                      }
+                    }
+                  },
+                  "cond" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "==",
+                      "left" : {
+                        "type" : "field",
+                        "value" : ["scalars", "last_avg_0"]
+                      },
+                      "right" : {
+                        "type" : "hexstr",
+                        "value" : "0x000000000000"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_4"]
             },
             {
               "type" : "expression",
@@ -588,7 +1135,7 @@
           ],
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 157,
+            "line" : 184,
             "column" : 33,
             "source_fragment" : "(bit<32>)flow_id"
           }
@@ -602,7 +1149,7 @@
             },
             {
               "type" : "field",
-              "value" : ["scalars", "tmp_2"]
+              "value" : ["scalars", "tmp_4"]
             },
             {
               "type" : "field",
@@ -611,9 +1158,343 @@
           ],
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 157,
+            "line" : 184,
             "column" : 8,
             "source_fragment" : "last_timestamp_reg.write((bit<32>)flow_id, current_timestamp)"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_5"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "field",
+                    "value" : ["scalars", "flow_id_0"]
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 185,
+            "column" : 30,
+            "source_fragment" : "(bit<32>)flow_id"
+          }
+        },
+        {
+          "op" : "register_write",
+          "parameters" : [
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.num_packets_reg"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_5"]
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "num_packets_0"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 185,
+            "column" : 8,
+            "source_fragment" : "num_packets_reg.write((bit<32>)flow_id, num_packets)"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_6"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "field",
+                    "value" : ["scalars", "flow_id_0"]
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffff"
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 186,
+            "column" : 30,
+            "source_fragment" : "(bit<32>)flow_id"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_7"]
+            },
+            {
+              "type" : "expression",
+              "value" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "?",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "?",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "-",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["standard_metadata", "ingress_global_timestamp"]
+                              },
+                              "right" : {
+                                "type" : "field",
+                                "value" : ["scalars", "last_timestamp_0"]
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffffffff"
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "hexstr",
+                        "value" : "0x000000000000"
+                      },
+                      "cond" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "!=",
+                          "left" : {
+                            "type" : "field",
+                            "value" : ["scalars", "last_timestamp_0"]
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0x000000000000"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "&",
+                      "left" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "+",
+                          "left" : {
+                            "type" : "field",
+                            "value" : ["scalars", "last_avg_0"]
+                          },
+                          "right" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : "&",
+                              "left" : {
+                                "type" : "expression",
+                                "value" : {
+                                  "op" : "two_comp_mod",
+                                  "left" : {
+                                    "type" : "expression",
+                                    "value" : {
+                                      "op" : ">>",
+                                      "left" : {
+                                        "type" : "expression",
+                                        "value" : {
+                                          "op" : "two_comp_mod",
+                                          "left" : {
+                                            "type" : "expression",
+                                            "value" : {
+                                              "op" : "-",
+                                              "left" : {
+                                                "type" : "expression",
+                                                "value" : {
+                                                  "op" : "two_comp_mod",
+                                                  "left" : {
+                                                    "type" : "expression",
+                                                    "value" : {
+                                                      "op" : "?",
+                                                      "left" : {
+                                                        "type" : "expression",
+                                                        "value" : {
+                                                          "op" : "&",
+                                                          "left" : {
+                                                            "type" : "expression",
+                                                            "value" : {
+                                                              "op" : "-",
+                                                              "left" : {
+                                                                "type" : "field",
+                                                                "value" : ["standard_metadata", "ingress_global_timestamp"]
+                                                              },
+                                                              "right" : {
+                                                                "type" : "field",
+                                                                "value" : ["scalars", "last_timestamp_0"]
+                                                              }
+                                                            }
+                                                          },
+                                                          "right" : {
+                                                            "type" : "hexstr",
+                                                            "value" : "0xffffffffffff"
+                                                          }
+                                                        }
+                                                      },
+                                                      "right" : {
+                                                        "type" : "hexstr",
+                                                        "value" : "0x000000000000"
+                                                      },
+                                                      "cond" : {
+                                                        "type" : "expression",
+                                                        "value" : {
+                                                          "op" : "!=",
+                                                          "left" : {
+                                                            "type" : "field",
+                                                            "value" : ["scalars", "last_timestamp_0"]
+                                                          },
+                                                          "right" : {
+                                                            "type" : "hexstr",
+                                                            "value" : "0x000000000000"
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "right" : {
+                                                    "type" : "hexstr",
+                                                    "value" : "0x30"
+                                                  }
+                                                }
+                                              },
+                                              "right" : {
+                                                "type" : "expression",
+                                                "value" : {
+                                                  "op" : "two_comp_mod",
+                                                  "left" : {
+                                                    "type" : "field",
+                                                    "value" : ["scalars", "last_avg_0"]
+                                                  },
+                                                  "right" : {
+                                                    "type" : "hexstr",
+                                                    "value" : "0x30"
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "right" : {
+                                            "type" : "hexstr",
+                                            "value" : "0x30"
+                                          }
+                                        }
+                                      },
+                                      "right" : {
+                                        "type" : "hexstr",
+                                        "value" : "0x6"
+                                      }
+                                    }
+                                  },
+                                  "right" : {
+                                    "type" : "hexstr",
+                                    "value" : "0x30"
+                                  }
+                                }
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0xffffffffffff"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "right" : {
+                        "type" : "hexstr",
+                        "value" : "0xffffffffffff"
+                      }
+                    }
+                  },
+                  "cond" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "==",
+                      "left" : {
+                        "type" : "field",
+                        "value" : ["scalars", "last_avg_0"]
+                      },
+                      "right" : {
+                        "type" : "hexstr",
+                        "value" : "0x000000000000"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 186,
+            "column" : 48,
+            "source_fragment" : "rolling_avg"
+          }
+        },
+        {
+          "op" : "register_write",
+          "parameters" : [
+            {
+              "type" : "register_array",
+              "value" : "MyIngress.rolling_avg_reg"
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_6"]
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "tmp_7"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 186,
+            "column" : 8,
+            "source_fragment" : "rolling_avg_reg.write((bit<32>)flow_id, rolling_avg)"
           }
         }
       ]
@@ -646,7 +1527,7 @@
           ],
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 161,
+            "line" : 191,
             "column" : 8,
             "source_fragment" : "standard_metadata.egress_spec = port"
           }
@@ -665,7 +1546,7 @@
           ],
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 162,
+            "line" : 192,
             "column" : 8,
             "source_fragment" : "hdr.ethernet.srcAddr = hdr.ethernet.dstAddr"
           }
@@ -684,7 +1565,7 @@
           ],
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 163,
+            "line" : 193,
             "column" : 8,
             "source_fragment" : "hdr.ethernet.dstAddr = dstAddr"
           }
@@ -726,7 +1607,7 @@
           ],
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 164,
+            "line" : 194,
             "column" : 8,
             "source_fragment" : "hdr.ipv4.ttl = hdr.ipv4.ttl - 1"
           }
@@ -745,7 +1626,7 @@
           ],
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 165,
+            "line" : 195,
             "column" : 8,
             "source_fragment" : "packet_ctr.count((bit<32>) 1)"
           }
@@ -771,7 +1652,7 @@
           ],
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 171,
+            "line" : 199,
             "column" : 8,
             "source_fragment" : "clone(CloneType.I2E, 100)"
           }
@@ -779,8 +1660,60 @@
       ]
     },
     {
-      "name" : "experimental194",
+      "name" : "experimental227",
       "id" : 6,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["interarrival", "malicious_packet_flag"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x01"
+            }
+          ],
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 227,
+            "column" : 20,
+            "source_fragment" : "hdr.interarrival.malicious_packet_flag = 1"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "experimental230",
+      "id" : 7,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["interarrival", "malicious_packet_flag"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x00"
+            }
+          ],
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 230,
+            "column" : 16,
+            "source_fragment" : "hdr.interarrival.malicious_packet_flag = 0"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "experimental220",
+      "id" : 8,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -797,64 +1730,9 @@
           ],
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 194,
+            "line" : 220,
             "column" : 12,
             "source_fragment" : "hdr.interarrival.interarrival_value = interarrival_value"
-          }
-        }
-      ]
-    },
-    {
-      "name" : "NoAction",
-      "id" : 7,
-      "runtime_data" : [],
-      "primitives" : []
-    },
-    {
-      "name" : "MyEgress.modify",
-      "id" : 8,
-      "runtime_data" : [],
-      "primitives" : [
-        {
-          "op" : "assign",
-          "parameters" : [
-            {
-              "type" : "field",
-              "value" : ["metrics", "timestamp_delta"]
-            },
-            {
-              "type" : "expression",
-              "value" : {
-                "type" : "expression",
-                "value" : {
-                  "op" : "&",
-                  "left" : {
-                    "type" : "expression",
-                    "value" : {
-                      "op" : "+",
-                      "left" : {
-                        "type" : "field",
-                        "value" : ["standard_metadata", "ingress_global_timestamp"]
-                      },
-                      "right" : {
-                        "type" : "hexstr",
-                        "value" : "0xffffffffffff"
-                      }
-                    }
-                  },
-                  "right" : {
-                    "type" : "hexstr",
-                    "value" : "0xffffffffffff"
-                  }
-                }
-              }
-            }
-          ],
-          "source_info" : {
-            "filename" : "experimental.p4",
-            "line" : 213,
-            "column" : 8,
-            "source_fragment" : "hdr.metrics.timestamp_delta = standard_metadata.ingress_global_timestamp - 1"
           }
         },
         {
@@ -862,21 +1740,52 @@
           "parameters" : [
             {
               "type" : "field",
-              "value" : ["metrics", "avg_delta"]
+              "value" : ["interarrival", "interarrival_avg"]
             },
             {
-              "type" : "hexstr",
-              "value" : "0x000000000020"
+              "type" : "field",
+              "value" : ["scalars", "rolling_avg_0"]
             }
           ],
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 6,
-            "column" : 32,
-            "source_fragment" : "32; ..."
+            "line" : 221,
+            "column" : 12,
+            "source_fragment" : "hdr.interarrival.interarrival_avg = rolling_avg"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["interarrival", "num_packets"]
+            },
+            {
+              "type" : "field",
+              "value" : ["scalars", "num_packets_0"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 224,
+            "column" : 12,
+            "source_fragment" : "hdr.interarrival.num_packets = num_packets"
           }
         }
       ]
+    },
+    {
+      "name" : "NoAction",
+      "id" : 9,
+      "runtime_data" : [],
+      "primitives" : []
+    },
+    {
+      "name" : "MyEgress.modify",
+      "id" : 10,
+      "runtime_data" : [],
+      "primitives" : []
     }
   ],
   "pipelines" : [
@@ -885,7 +1794,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "experimental.p4",
-        "line" : 121,
+        "line" : 113,
         "column" : 8,
         "source_fragment" : "MyIngress"
       },
@@ -896,7 +1805,7 @@
           "id" : 0,
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 192,
+            "line" : 218,
             "column" : 12,
             "source_fragment" : "compute_flow_id()"
           },
@@ -925,7 +1834,7 @@
           "id" : 1,
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 193,
+            "line" : 219,
             "column" : 12,
             "source_fragment" : "get_interarrival_time()"
           },
@@ -938,9 +1847,9 @@
           "direct_meters" : null,
           "action_ids" : [3],
           "actions" : ["MyIngress.get_interarrival_time"],
-          "base_default_next" : "tbl_experimental194",
+          "base_default_next" : "tbl_experimental220",
           "next_tables" : {
-            "MyIngress.get_interarrival_time" : "tbl_experimental194"
+            "MyIngress.get_interarrival_time" : "tbl_experimental220"
           },
           "default_entry" : {
             "action_id" : 3,
@@ -950,12 +1859,41 @@
           }
         },
         {
-          "name" : "tbl_experimental194",
+          "name" : "tbl_experimental220",
           "id" : 2,
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 194,
+            "line" : 220,
             "column" : 48,
+            "source_fragment" : "= interarrival_value; ..."
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [8],
+          "actions" : ["experimental220"],
+          "base_default_next" : "node_7",
+          "next_tables" : {
+            "experimental220" : "node_7"
+          },
+          "default_entry" : {
+            "action_id" : 8,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_experimental227",
+          "id" : 3,
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 227,
+            "column" : 59,
             "source_fragment" : "="
           },
           "key" : [],
@@ -966,10 +1904,10 @@
           "support_timeout" : false,
           "direct_meters" : null,
           "action_ids" : [6],
-          "actions" : ["experimental194"],
+          "actions" : ["experimental227"],
           "base_default_next" : "MyIngress.ipv4_lpm",
           "next_tables" : {
-            "experimental194" : "MyIngress.ipv4_lpm"
+            "experimental227" : "MyIngress.ipv4_lpm"
           },
           "default_entry" : {
             "action_id" : 6,
@@ -979,11 +1917,40 @@
           }
         },
         {
-          "name" : "MyIngress.ipv4_lpm",
-          "id" : 3,
+          "name" : "tbl_experimental230",
+          "id" : 4,
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 176,
+            "line" : 230,
+            "column" : 55,
+            "source_fragment" : "="
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [7],
+          "actions" : ["experimental230"],
+          "base_default_next" : "MyIngress.ipv4_lpm",
+          "next_tables" : {
+            "experimental230" : "MyIngress.ipv4_lpm"
+          },
+          "default_entry" : {
+            "action_id" : 7,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "MyIngress.ipv4_lpm",
+          "id" : 5,
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 202,
             "column" : 10,
             "source_fragment" : "ipv4_lpm"
           },
@@ -1018,10 +1985,10 @@
         },
         {
           "name" : "tbl_clone_packet",
-          "id" : 4,
+          "id" : 6,
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 199,
+            "line" : 236,
             "column" : 8,
             "source_fragment" : "clone_packet()"
           },
@@ -1053,7 +2020,7 @@
           "id" : 0,
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 190,
+            "line" : 216,
             "column" : 8,
             "source_fragment" : "hdr.ipv4.isValid()"
           },
@@ -1076,7 +2043,7 @@
           "id" : 1,
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 191,
+            "line" : 217,
             "column" : 11,
             "source_fragment" : "hdr.interarrival.isValid()"
           },
@@ -1093,6 +2060,98 @@
           },
           "true_next" : "tbl_compute_flow_id",
           "false_next" : "MyIngress.ipv4_lpm"
+        },
+        {
+          "name" : "node_7",
+          "id" : 2,
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 225,
+            "column" : 15,
+            "source_fragment" : "num_packets > 10"
+          },
+          "expression" : {
+            "type" : "expression",
+            "value" : {
+              "op" : ">",
+              "left" : {
+                "type" : "field",
+                "value" : ["scalars", "num_packets_0"]
+              },
+              "right" : {
+                "type" : "hexstr",
+                "value" : "0x00000000000a"
+              }
+            }
+          },
+          "true_next" : "node_8",
+          "false_next" : "tbl_experimental230"
+        },
+        {
+          "name" : "node_8",
+          "id" : 3,
+          "source_info" : {
+            "filename" : "experimental.p4",
+            "line" : 226,
+            "column" : 19,
+            "source_fragment" : "interarrival_value > (rolling_avg + (rolling_avg >> 2))"
+          },
+          "expression" : {
+            "type" : "expression",
+            "value" : {
+              "op" : ">",
+              "left" : {
+                "type" : "field",
+                "value" : ["scalars", "interarrival_value_0"]
+              },
+              "right" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "&",
+                  "left" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "+",
+                      "left" : {
+                        "type" : "field",
+                        "value" : ["scalars", "rolling_avg_0"]
+                      },
+                      "right" : {
+                        "type" : "expression",
+                        "value" : {
+                          "op" : "&",
+                          "left" : {
+                            "type" : "expression",
+                            "value" : {
+                              "op" : ">>",
+                              "left" : {
+                                "type" : "field",
+                                "value" : ["scalars", "rolling_avg_0"]
+                              },
+                              "right" : {
+                                "type" : "hexstr",
+                                "value" : "0x2"
+                              }
+                            }
+                          },
+                          "right" : {
+                            "type" : "hexstr",
+                            "value" : "0xffffffffffff"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0xffffffffffff"
+                  }
+                }
+              }
+            }
+          },
+          "true_next" : "tbl_experimental227",
+          "false_next" : "MyIngress.ipv4_lpm"
         }
       ]
     },
@@ -1101,7 +2160,7 @@
       "id" : 1,
       "source_info" : {
         "filename" : "experimental.p4",
-        "line" : 209,
+        "line" : 246,
         "column" : 8,
         "source_fragment" : "MyEgress"
       },
@@ -1109,10 +2168,10 @@
       "tables" : [
         {
           "name" : "MyEgress.modify_metrics",
-          "id" : 5,
+          "id" : 7,
           "source_info" : {
             "filename" : "experimental.p4",
-            "line" : 216,
+            "line" : 253,
             "column" : 10,
             "source_fragment" : "modify_metrics"
           },
@@ -1123,7 +2182,7 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [8, 7],
+          "action_ids" : [10, 9],
           "actions" : ["MyEgress.modify", "NoAction"],
           "base_default_next" : null,
           "next_tables" : {
@@ -1131,7 +2190,7 @@
             "NoAction" : null
           },
           "default_entry" : {
-            "action_id" : 8,
+            "action_id" : 10,
             "action_const" : false,
             "action_data" : [],
             "action_entry_const" : false
@@ -1148,7 +2207,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "experimental.p4",
-        "line" : 235,
+        "line" : 272,
         "column" : 8,
         "source_fragment" : "update_checksum( ..."
       },

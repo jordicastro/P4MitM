@@ -22,11 +22,10 @@ header ethernet_t {
 
 header interarrival_t {
     bit<48> interarrival_value;
-}
-
-header metrics_t {
-    bit<48> timestamp_delta;
-    bit<48> avg_delta;
+    bit<48> interarrival_avg;
+    bit<48> interarrival_stdev;
+    bit<48> num_packets;
+    bit<8> malicious_packet_flag;
 }
 
 header ipv4_t {
@@ -66,7 +65,6 @@ struct headers {
     ethernet_t   ethernet;
     ipv4_t       ipv4;
     interarrival_t interarrival;
-    metrics_t metrics;
 }
 
 /*************************************************************************
@@ -98,12 +96,6 @@ parser MyParser(packet_in packet,
         packet.extract(hdr.interarrival);
         transition accept;
     }
-
-    state parse_metrics {
-        packet.extract(hdr.metrics);
-        transition accept;
-    }
-
 }
 
 /*************************************************************************
@@ -122,15 +114,23 @@ control MyIngress(inout headers hdr,
                   inout metadata meta,
                   inout standard_metadata_t standard_metadata) {
     counter(32w1024, CounterType.packets) packet_ctr;
-    bit<16> flow_id;
+    bit<16> flow_id; //for each flow going through switch, in our case usually just one
     register<bit<48>>(65535) last_timestamp_reg;
+    register<bit<48>>(65535) num_packets_reg;
+    register<bit<48>>(65535) rolling_avg_reg;
+    //register<bit<48>>(65535) rolling_stdev_reg;
     bit<48> interarrival_value;
+    bit<48> num_packets;
+    bit<48> rolling_avg;
+    bit<48> rolling_stdev;
+    bit<8> malicious_flag;
+    bit<48> threshold;
 
     action drop() {
         mark_to_drop(standard_metadata);
     }
 
-    action compute_flow_id(){
+    action compute_flow_id(){ //differentiate the flows for register tracking
         hash(
             flow_id,
             HashAlgorithm.crc16,
@@ -146,15 +146,33 @@ control MyIngress(inout headers hdr,
     action get_interarrival_time () {
         bit<48> last_timestamp;
         bit<48> current_timestamp;
+        bit<48> last_avg;
+        bit<48> last_stdev;
         last_timestamp_reg.read(last_timestamp, (bit<32>)flow_id);
+        rolling_avg_reg.read(last_avg, (bit<32>)flow_id);
+        //rolling_stdev_reg.read(last_stdev, (bit<32>)flow_id);
+        num_packets_reg.read(num_packets, (bit<32>)flow_id);
         current_timestamp = standard_metadata.ingress_global_timestamp;
+
+        num_packets = num_packets + 1;
 
         if(last_timestamp != 0){
             interarrival_value = current_timestamp - last_timestamp;
         } else {
             interarrival_value = 0;
         }
+        //determine avg
+        int<48> diff;
+        diff = ((int<48>) interarrival_value) - ((int<48>) last_avg);
+        diff = diff >> 6; //modify old avg by most only significant bits of new avg
+        rolling_avg = last_avg + (bit<48>) diff;
+        if(last_avg == 0){
+            rolling_avg = interarrival_value;
+        }
         last_timestamp_reg.write((bit<32>)flow_id, current_timestamp);
+        num_packets_reg.write((bit<32>)flow_id, num_packets);
+        rolling_avg_reg.write((bit<32>)flow_id, rolling_avg);
+        // rolling_stdev_reg.write((bit<32>)flow_id, rolling_stdev);
     }
 
     action ipv4_forward(macAddr_t dstAddr, egressSpec_t port) {
@@ -163,15 +181,11 @@ control MyIngress(inout headers hdr,
         hdr.ethernet.dstAddr = dstAddr;
         hdr.ipv4.ttl = hdr.ipv4.ttl - 1;
         packet_ctr.count((bit<32>) 1);
-        //hdr.metrics.setValid();
-        //hdr.metrics.timestamp_delta = standard_metadata.ingress_global_timestamp - 1; //difference between leaving last port and arriving at this switch
     }
 
     action clone_packet() {
         clone(CloneType.I2E, 100); // Clone session ID is 100
     }
-
-
 
     table ipv4_lpm {
         key = {
@@ -192,6 +206,15 @@ control MyIngress(inout headers hdr,
             compute_flow_id();
             get_interarrival_time();
             hdr.interarrival.interarrival_value = interarrival_value;
+            hdr.interarrival.interarrival_avg = rolling_avg;
+            hdr.interarrival.num_packets = num_packets;
+            if(num_packets > 10){
+                if(interarrival_value > (rolling_avg + (rolling_avg >> 6))){ //this threshold value should be based on something more concrete
+                    hdr.interarrival.malicious_packet_flag = 1;
+                } 
+            } else {
+                hdr.interarrival.malicious_packet_flag = 0;
+            }
         }
         ipv4_lpm.apply();
         
@@ -210,8 +233,8 @@ control MyEgress(inout headers hdr,
                  inout metadata meta,
                  inout standard_metadata_t standard_metadata) {
     action modify (){
-        hdr.metrics.timestamp_delta = standard_metadata.ingress_global_timestamp - 1; //difference between leaving last port and arriving at this switch
-        hdr.metrics.avg_delta = rolling_average;
+        //hdr.metrics.timestamp_delta = standard_metadata.ingress_global_timestamp - 1; //difference between leaving last port and arriving at this switch
+        //hdr.metrics.avg_delta = rolling_average;
     }
     table modify_metrics {
         actions = {
