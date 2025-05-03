@@ -3,7 +3,10 @@
     {
       "name" : "scalars_0",
       "id" : 0,
-      "fields" : []
+      "fields" : [
+        ["metadata.ipv4_checksum_error", 1, false],
+        ["_padding_0", 7, false]
+      ]
     },
     {
       "name" : "standard_metadata",
@@ -95,6 +98,16 @@
       "id" : 1,
       "name" : "fl",
       "elements" : []
+    },
+    {
+      "id" : 2,
+      "name" : "fl_0",
+      "elements" : []
+    },
+    {
+      "id" : 3,
+      "name" : "fl_1",
+      "elements" : []
     }
   ],
   "errors" : [
@@ -182,7 +195,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "basic.p4",
-        "line" : 169,
+        "line" : 212,
         "column" : 8,
         "source_fragment" : "MyDeparser"
       },
@@ -199,9 +212,66 @@
       "id" : 0,
       "source_info" : {
         "filename" : "basic.p4",
-        "line" : 147,
+        "line" : 190,
         "column" : 8,
         "source_fragment" : "update_checksum( ..."
+      },
+      "algo" : "csum16",
+      "input" : [
+        {
+          "type" : "field",
+          "value" : ["ipv4", "version"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "ihl"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "diffserv"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "totalLen"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "identification"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "flags"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "fragOffset"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "ttl"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "protocol"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "srcAddr"]
+        },
+        {
+          "type" : "field",
+          "value" : ["ipv4", "dstAddr"]
+        }
+      ]
+    },
+    {
+      "name" : "calc_0",
+      "id" : 1,
+      "source_info" : {
+        "filename" : "basic.p4",
+        "line" : 85,
+        "column" : 8,
+        "source_fragment" : "verify_checksum( ..."
       },
       "algo" : "csum16",
       "input" : [
@@ -266,6 +336,25 @@
       "runtime_data" : [],
       "primitives" : [
         {
+          "op" : "clone_ingress_pkt_to_egress",
+          "parameters" : [
+            {
+              "type" : "hexstr",
+              "value" : "0x00000063"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x1"
+            }
+          ],
+          "source_info" : {
+            "filename" : "basic.p4",
+            "line" : 115,
+            "column" : 8,
+            "source_fragment" : "clone(CloneType.I2E, 99)"
+          }
+        },
+        {
           "op" : "mark_to_drop",
           "parameters" : [
             {
@@ -275,7 +364,48 @@
           ],
           "source_info" : {
             "filename" : "basic.p4",
-            "line" : 91,
+            "line" : 116,
+            "column" : 8,
+            "source_fragment" : "mark_to_drop(standard_metadata)"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "MyIngress.drop",
+      "id" : 2,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "clone_ingress_pkt_to_egress",
+          "parameters" : [
+            {
+              "type" : "hexstr",
+              "value" : "0x00000063"
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x2"
+            }
+          ],
+          "source_info" : {
+            "filename" : "basic.p4",
+            "line" : 115,
+            "column" : 8,
+            "source_fragment" : "clone(CloneType.I2E, 99)"
+          }
+        },
+        {
+          "op" : "mark_to_drop",
+          "parameters" : [
+            {
+              "type" : "header",
+              "value" : "standard_metadata"
+            }
+          ],
+          "source_info" : {
+            "filename" : "basic.p4",
+            "line" : 116,
             "column" : 8,
             "source_fragment" : "mark_to_drop(standard_metadata)"
           }
@@ -284,7 +414,7 @@
     },
     {
       "name" : "MyIngress.ipv4_forward",
-      "id" : 2,
+      "id" : 3,
       "runtime_data" : [
         {
           "name" : "dstAddr",
@@ -310,7 +440,7 @@
           ],
           "source_info" : {
             "filename" : "basic.p4",
-            "line" : 95,
+            "line" : 120,
             "column" : 8,
             "source_fragment" : "standard_metadata.egress_spec = port"
           }
@@ -329,7 +459,7 @@
           ],
           "source_info" : {
             "filename" : "basic.p4",
-            "line" : 96,
+            "line" : 121,
             "column" : 8,
             "source_fragment" : "hdr.ethernet.srcAddr = hdr.ethernet.dstAddr"
           }
@@ -348,7 +478,7 @@
           ],
           "source_info" : {
             "filename" : "basic.p4",
-            "line" : 97,
+            "line" : 122,
             "column" : 8,
             "source_fragment" : "hdr.ethernet.dstAddr = dstAddr"
           }
@@ -390,7 +520,7 @@
           ],
           "source_info" : {
             "filename" : "basic.p4",
-            "line" : 98,
+            "line" : 123,
             "column" : 8,
             "source_fragment" : "hdr.ipv4.ttl = hdr.ipv4.ttl - 1"
           }
@@ -398,8 +528,81 @@
       ]
     },
     {
+      "name" : "MyIngress.redirect_to_mitm",
+      "id" : 4,
+      "runtime_data" : [
+        {
+          "name" : "dstAddr",
+          "bitwidth" : 48
+        },
+        {
+          "name" : "port",
+          "bitwidth" : 9
+        }
+      ],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["standard_metadata", "egress_spec"]
+            },
+            {
+              "type" : "runtime_data",
+              "value" : 1
+            }
+          ],
+          "source_info" : {
+            "filename" : "basic.p4",
+            "line" : 127,
+            "column" : 8,
+            "source_fragment" : "standard_metadata.egress_spec = port"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ethernet", "srcAddr"]
+            },
+            {
+              "type" : "field",
+              "value" : ["ethernet", "dstAddr"]
+            }
+          ],
+          "source_info" : {
+            "filename" : "basic.p4",
+            "line" : 128,
+            "column" : 8,
+            "source_fragment" : "hdr.ethernet.srcAddr = hdr.ethernet.dstAddr"
+          }
+        },
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["ethernet", "dstAddr"]
+            },
+            {
+              "type" : "runtime_data",
+              "value" : 0
+            }
+          ],
+          "source_info" : {
+            "filename" : "basic.p4",
+            "line" : 129,
+            "column" : 8,
+            "source_fragment" : "hdr.ethernet.dstAddr = dstAddr"
+          }
+        }
+      ]
+    },
+    {
       "name" : "MyIngress.clone_packet",
-      "id" : 3,
+      "id" : 5,
       "runtime_data" : [],
       "primitives" : [
         {
@@ -411,14 +614,40 @@
             },
             {
               "type" : "hexstr",
-              "value" : "0x1"
+              "value" : "0x3"
             }
           ],
           "source_info" : {
             "filename" : "basic.p4",
-            "line" : 102,
+            "line" : 134,
             "column" : 8,
             "source_fragment" : "clone(CloneType.I2E, 100)"
+          }
+        }
+      ]
+    },
+    {
+      "name" : "MyIngress.set_checksum_error",
+      "id" : 6,
+      "runtime_data" : [],
+      "primitives" : [
+        {
+          "op" : "assign",
+          "parameters" : [
+            {
+              "type" : "field",
+              "value" : ["scalars", "metadata.ipv4_checksum_error"]
+            },
+            {
+              "type" : "hexstr",
+              "value" : "0x01"
+            }
+          ],
+          "source_info" : {
+            "filename" : "basic.p4",
+            "line" : 139,
+            "column" : 8,
+            "source_fragment" : "meta.ipv4_checksum_error = 1"
           }
         }
       ]
@@ -430,18 +659,76 @@
       "id" : 0,
       "source_info" : {
         "filename" : "basic.p4",
-        "line" : 87,
+        "line" : 111,
         "column" : 8,
         "source_fragment" : "MyIngress"
       },
       "init_table" : "node_2",
       "tables" : [
         {
-          "name" : "MyIngress.ipv4_lpm",
+          "name" : "tbl_set_checksum_error",
           "id" : 0,
           "source_info" : {
             "filename" : "basic.p4",
-            "line" : 107,
+            "line" : 161,
+            "column" : 16,
+            "source_fragment" : "set_checksum_error()"
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [6],
+          "actions" : ["MyIngress.set_checksum_error"],
+          "base_default_next" : "tbl_drop",
+          "next_tables" : {
+            "MyIngress.set_checksum_error" : "tbl_drop"
+          },
+          "default_entry" : {
+            "action_id" : 6,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "tbl_drop",
+          "id" : 1,
+          "source_info" : {
+            "filename" : "basic.p4",
+            "line" : 162,
+            "column" : 16,
+            "source_fragment" : "drop()"
+          },
+          "key" : [],
+          "match_type" : "exact",
+          "type" : "simple",
+          "max_size" : 1024,
+          "with_counters" : false,
+          "support_timeout" : false,
+          "direct_meters" : null,
+          "action_ids" : [2],
+          "actions" : ["MyIngress.drop"],
+          "base_default_next" : null,
+          "next_tables" : {
+            "MyIngress.drop" : null
+          },
+          "default_entry" : {
+            "action_id" : 2,
+            "action_const" : true,
+            "action_data" : [],
+            "action_entry_const" : true
+          }
+        },
+        {
+          "name" : "MyIngress.ipv4_lpm",
+          "id" : 2,
+          "source_info" : {
+            "filename" : "basic.p4",
+            "line" : 142,
             "column" : 10,
             "source_fragment" : "ipv4_lpm"
           },
@@ -459,11 +746,12 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [2, 1, 0],
-          "actions" : ["MyIngress.ipv4_forward", "MyIngress.drop", "NoAction"],
+          "action_ids" : [3, 4, 1, 0],
+          "actions" : ["MyIngress.ipv4_forward", "MyIngress.redirect_to_mitm", "MyIngress.drop", "NoAction"],
           "base_default_next" : "tbl_clone_packet",
           "next_tables" : {
             "MyIngress.ipv4_forward" : "tbl_clone_packet",
+            "MyIngress.redirect_to_mitm" : "tbl_clone_packet",
             "MyIngress.drop" : "tbl_clone_packet",
             "NoAction" : "tbl_clone_packet"
           },
@@ -476,11 +764,11 @@
         },
         {
           "name" : "tbl_clone_packet",
-          "id" : 1,
+          "id" : 3,
           "source_info" : {
             "filename" : "basic.p4",
-            "line" : 125,
-            "column" : 8,
+            "line" : 169,
+            "column" : 12,
             "source_fragment" : "clone_packet()"
           },
           "key" : [],
@@ -490,14 +778,14 @@
           "with_counters" : false,
           "support_timeout" : false,
           "direct_meters" : null,
-          "action_ids" : [3],
+          "action_ids" : [5],
           "actions" : ["MyIngress.clone_packet"],
           "base_default_next" : null,
           "next_tables" : {
             "MyIngress.clone_packet" : null
           },
           "default_entry" : {
-            "action_id" : 3,
+            "action_id" : 5,
             "action_const" : true,
             "action_data" : [],
             "action_entry_const" : true
@@ -511,8 +799,8 @@
           "id" : 0,
           "source_info" : {
             "filename" : "basic.p4",
-            "line" : 121,
-            "column" : 8,
+            "line" : 157,
+            "column" : 12,
             "source_fragment" : "hdr.ipv4.isValid()"
           },
           "expression" : {
@@ -527,7 +815,57 @@
             }
           },
           "false_next" : null,
-          "true_next" : "MyIngress.ipv4_lpm"
+          "true_next" : "node_3"
+        },
+        {
+          "name" : "node_3",
+          "id" : 1,
+          "source_info" : {
+            "filename" : "basic.p4",
+            "line" : 160,
+            "column" : 16,
+            "source_fragment" : "!hdr.ipv4.isValid() || standard_metadata.checksum_error == 1"
+          },
+          "expression" : {
+            "type" : "expression",
+            "value" : {
+              "op" : "or",
+              "left" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "not",
+                  "left" : null,
+                  "right" : {
+                    "type" : "expression",
+                    "value" : {
+                      "op" : "d2b",
+                      "left" : null,
+                      "right" : {
+                        "type" : "field",
+                        "value" : ["ipv4", "$valid$"]
+                      }
+                    }
+                  }
+                }
+              },
+              "right" : {
+                "type" : "expression",
+                "value" : {
+                  "op" : "==",
+                  "left" : {
+                    "type" : "field",
+                    "value" : ["standard_metadata", "checksum_error"]
+                  },
+                  "right" : {
+                    "type" : "hexstr",
+                    "value" : "0x01"
+                  }
+                }
+              }
+            }
+          },
+          "true_next" : "tbl_set_checksum_error",
+          "false_next" : "MyIngress.ipv4_lpm"
         }
       ]
     },
@@ -536,7 +874,7 @@
       "id" : 1,
       "source_info" : {
         "filename" : "basic.p4",
-        "line" : 135,
+        "line" : 178,
         "column" : 8,
         "source_fragment" : "MyEgress"
       },
@@ -552,7 +890,7 @@
       "id" : 0,
       "source_info" : {
         "filename" : "basic.p4",
-        "line" : 147,
+        "line" : 190,
         "column" : 8,
         "source_fragment" : "update_checksum( ..."
       },
@@ -561,6 +899,32 @@
       "calculation" : "calc",
       "verify" : false,
       "update" : true,
+      "if_cond" : {
+        "type" : "expression",
+        "value" : {
+          "op" : "d2b",
+          "left" : null,
+          "right" : {
+            "type" : "field",
+            "value" : ["ipv4", "$valid$"]
+          }
+        }
+      }
+    },
+    {
+      "name" : "cksum_0",
+      "id" : 1,
+      "source_info" : {
+        "filename" : "basic.p4",
+        "line" : 85,
+        "column" : 8,
+        "source_fragment" : "verify_checksum( ..."
+      },
+      "target" : ["ipv4", "hdrChecksum"],
+      "type" : "generic",
+      "calculation" : "calc_0",
+      "verify" : true,
+      "update" : false,
       "if_cond" : {
         "type" : "expression",
         "value" : {

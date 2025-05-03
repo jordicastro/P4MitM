@@ -20,6 +20,9 @@ tables {
     id: 28792405
   }
   action_refs {
+    id: 18353883
+  }
+  action_refs {
     id: 25652968
   }
   action_refs {
@@ -64,9 +67,33 @@ actions {
 }
 actions {
   preamble {
+    id: 18353883
+    name: "MyIngress.redirect_to_mitm"
+    alias: "redirect_to_mitm"
+  }
+  params {
+    id: 1
+    name: "dstAddr"
+    bitwidth: 48
+  }
+  params {
+    id: 2
+    name: "port"
+    bitwidth: 9
+  }
+}
+actions {
+  preamble {
     id: 23719224
     name: "MyIngress.clone_packet"
     alias: "clone_packet"
+  }
+}
+actions {
+  preamble {
+    id: 25325623
+    name: "MyIngress.set_checksum_error"
+    alias: "set_checksum_error"
   }
 }
 type_info {

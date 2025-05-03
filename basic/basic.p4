@@ -35,7 +35,8 @@ header ipv4_t {
 }
 
 struct metadata {
-    /* empty */
+    // checksum flag
+    bit<1> ipv4_checksum_error;
 }
 
 struct headers {
@@ -74,9 +75,32 @@ parser MyParser(packet_in packet,
 /*************************************************************************
 ************   C H E C K S U M    V E R I F I C A T I O N   *************
 *************************************************************************/
+// if ipv4 header -> recalculate checksum using packet's header fields '{ ... }' and csum16 algorithm
+// compares result with hdr.ipv4.hdrChecksum (the sum that came with the packet)
+// invalidates IPv4 headers if sums do not match
 
 control MyVerifyChecksum(inout headers hdr, inout metadata meta) {
-    apply {  }
+    apply {
+        // Only direct calls to verify_checksum are allowed in this control block
+        verify_checksum(
+            hdr.ipv4.isValid(),
+            {
+                hdr.ipv4.version,
+                hdr.ipv4.ihl,
+                hdr.ipv4.diffserv,
+                hdr.ipv4.totalLen,
+                hdr.ipv4.identification,
+                hdr.ipv4.flags,
+                hdr.ipv4.fragOffset,
+                hdr.ipv4.ttl,
+                hdr.ipv4.protocol,
+                hdr.ipv4.srcAddr,
+                hdr.ipv4.dstAddr
+            },
+            hdr.ipv4.hdrChecksum,
+            HashAlgorithm.csum16
+        );
+    }
 }
 
 
@@ -88,7 +112,8 @@ control MyIngress(inout headers hdr,
                   inout metadata meta,
                   inout standard_metadata_t standard_metadata) {
     action drop() {
-        mark_to_drop(standard_metadata);
+        clone(CloneType.I2E, 99); // clone the corrupt packet using session ID 99, 'mirroring_add 99 255'
+        mark_to_drop(standard_metadata); // drop the corrupt packet
     }
 
     action ipv4_forward(macAddr_t dstAddr, egressSpec_t port) {
@@ -98,18 +123,29 @@ control MyIngress(inout headers hdr,
         hdr.ipv4.ttl = hdr.ipv4.ttl - 1;
     }
 
+    action redirect_to_mitm(macAddr_t dstAddr, egressSpec_t port) {
+        standard_metadata.egress_spec = port;
+        hdr.ethernet.srcAddr = hdr.ethernet.dstAddr;
+        hdr.ethernet.dstAddr = dstAddr;
+        // not decrement TTL to avoid suspicion
+    }
+
     action clone_packet() {
         clone(CloneType.I2E, 100); // Clone session ID is 100
     }
 
+    // Action to set checksum error flag
+    action set_checksum_error() {
+        meta.ipv4_checksum_error = 1;
+    }
 
-
-    table ipv4_lpm {
+    table ipv4_lpm { // standard_metadata.ingress_port: exact;
         key = {
             hdr.ipv4.dstAddr: lpm;
         }
         actions = {
             ipv4_forward;
+            redirect_to_mitm;
             drop;
             NoAction;
         }
@@ -118,14 +154,21 @@ control MyIngress(inout headers hdr,
     }
 
     apply {
-    if (hdr.ipv4.isValid()) {
-        ipv4_lpm.apply();
-        
-        // Clone the packet using session ID 100
-        clone_packet();
-    }
-}
+        if (hdr.ipv4.isValid()) {
+            // We need to detect checksum errors differently since we can't use if in VerifyChecksum
+            // For this example, we'll use the validity of the IPv4 header as an indicator
+            if (!hdr.ipv4.isValid() || standard_metadata.checksum_error == 1) {
+                set_checksum_error();
+                drop(); // clone & drop corrupt packets: session ID 99: s3
+                return;
+            }
 
+            ipv4_lpm.apply();
+            
+            // clone the packet using session ID 100: s2
+            clone_packet();
+        }
+    }
 }
 
 /*************************************************************************
