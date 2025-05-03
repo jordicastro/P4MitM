@@ -53,6 +53,12 @@ class MITMTopo(Topo):
             host = self.addHost(h_name, ip=ip, mac=mac)
             self.addLink(host, switch)
 
+def install_mitm_script(net):
+    h2 = net.get("h2")
+    # copy the script to h2 terminal
+    h2.cmd('cp ./mitm_script.py /tmp/mitm_script.py')
+    h2.cmd('chmod +x /tmp/mitm_script.py')
+
 def main():
     topo = MITMTopo(args.behavioral_exe, args.json, args.thrift_port, args.pcap_dump)
     net = Mininet(topo=topo, host=P4Host, switch=P4Switch, controller=None)
@@ -80,6 +86,11 @@ def main():
     h1.describe()
     h2.describe()
     h3.describe()
+
+    # install the mitm script on h2 terminal
+    install_mitm_script(net)
+    # execute the mitm alteration script
+    h2.cmd('python3 /tmp/mitm_script.py &')
     
     print("Topology is ready!")
     CLI(net)

@@ -1,3 +1,11 @@
-table_add MyIngress.ipv4_lpm ipv4_forward 10.0.1.1/24 => 00:04:00:00:00:01 1
-table_add MyIngress.ipv4_lpm ipv4_forward 10.0.2.1/24 => 00:04:00:00:00:02 3
-table_add MyIngress.ipv4_lpm ipv4_forward 10.0.3.1/24 => 00:04:00:00:00:03 2
+# table_add MyIngress.ipv4_lpm ipv4_forward 10.0.1.1/24 => 00:04:00:00:00:01 1
+# table_add MyIngress.ipv4_lpm ipv4_forward 10.0.2.1/24 => 00:04:00:00:00:02 2
+table_add MyIngress.ipv4_lpm ipv4_forward 10.0.3.1/24 => 00:04:00:00:00:03 3
+
+# s2 rules (compromised switch): Redirect traffic to h2 and forward modified packets to s3
+
+# Rule 1: When packets come from s1 (port 1), redirect to h2 (port 2)
+table_add ipv4_lpm redirect_to_mitm 10.0.0.3/32 1 => 00:00:00:00:00:02 2
+
+# Rule 2: When packets come back from h2 (port 2), forward to s3 (port 3)
+table_add ipv4_lpm ipv4_forward 10.0.0.3/32 2 => 00:00:00:00:03:03 3

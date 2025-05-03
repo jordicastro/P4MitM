@@ -1,3 +1,6 @@
 table_add MyIngress.ipv4_lpm ipv4_forward 10.0.1.1/24 => 00:04:00:00:00:01 1
 table_add MyIngress.ipv4_lpm ipv4_forward 10.0.2.1/24 => 00:04:00:00:00:02 1
 table_add MyIngress.ipv4_lpm ipv4_forward 10.0.3.1/24 => 00:04:00:00:00:03 2
+
+# mirror corrupt packets to monitoring port (h3, for now)
+mirroring_add 99 2
