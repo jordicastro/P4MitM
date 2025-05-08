@@ -170,7 +170,7 @@ class MITMTopo(Topo):
                                 pcap_dump=pcap_dump)
         switch2 = self.addSwitch("s2",
                                 sw_path=sw_path,
-                                json_path=json_path,
+                                json_path="sabotage.json",
                                 thrift_port=9091,
                                 pcap_dump=pcap_dump)
         switch3 = self.addSwitch("s3",

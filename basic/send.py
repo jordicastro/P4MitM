@@ -24,7 +24,6 @@ class interarrival(Packet):
     name = "interarrival"
     fields_desc=[BitField("interarrival_value", 0, 48),
                  BitField("interarrival_avg", 0, 48),
-                 BitField("interarrival_stdev", 0, 48),
                  BitField("num_packets", 0, 48),
                  BitField("malicious_packet_flag", 0, 48)]
     def extract_padding(self, p):

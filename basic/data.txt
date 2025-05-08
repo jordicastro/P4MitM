@@ -1,0 +1,2082 @@
+matched protocol interarrival
+sniffing on eth0
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 495331227
+        interarrival_avg= 9823
+        num_packets= 790
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100569
+        interarrival_avg= 9823
+        num_packets= 791
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 104362
+        interarrival_avg= 9823
+        num_packets= 792
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 96736
+        interarrival_avg= 9823
+        num_packets= 793
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99220
+        interarrival_avg= 9823
+        num_packets= 794
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 98971
+        interarrival_avg= 9823
+        num_packets= 795
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 101009
+        interarrival_avg= 9823
+        num_packets= 796
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100447
+        interarrival_avg= 9823
+        num_packets= 797
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99200
+        interarrival_avg= 9823
+        num_packets= 798
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99712
+        interarrival_avg= 9823
+        num_packets= 799
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100783
+        interarrival_avg= 9823
+        num_packets= 800
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99136
+        interarrival_avg= 9823
+        num_packets= 801
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100230
+        interarrival_avg= 9823
+        num_packets= 802
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 101196
+        interarrival_avg= 9823
+        num_packets= 803
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99687
+        interarrival_avg= 9823
+        num_packets= 804
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99215
+        interarrival_avg= 9823
+        num_packets= 805
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99711
+        interarrival_avg= 9823
+        num_packets= 806
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100298
+        interarrival_avg= 9823
+        num_packets= 807
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100047
+        interarrival_avg= 9823
+        num_packets= 808
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99756
+        interarrival_avg= 9823
+        num_packets= 809
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100328
+        interarrival_avg= 9823
+        num_packets= 810
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99824
+        interarrival_avg= 9823
+        num_packets= 811
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100320
+        interarrival_avg= 9823
+        num_packets= 812
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99584
+        interarrival_avg= 9823
+        num_packets= 813
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100065
+        interarrival_avg= 9823
+        num_packets= 814
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99684
+        interarrival_avg= 9823
+        num_packets= 815
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100855
+        interarrival_avg= 9823
+        num_packets= 816
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99371
+        interarrival_avg= 9823
+        num_packets= 817
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100008
+        interarrival_avg= 9823
+        num_packets= 818
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100253
+        interarrival_avg= 9823
+        num_packets= 819
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99879
+        interarrival_avg= 9823
+        num_packets= 820
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100119
+        interarrival_avg= 9823
+        num_packets= 821
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100259
+        interarrival_avg= 9823
+        num_packets= 822
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99696
+        interarrival_avg= 9823
+        num_packets= 823
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100156
+        interarrival_avg= 9823
+        num_packets= 824
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99029
+        interarrival_avg= 9823
+        num_packets= 825
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100467
+        interarrival_avg= 9823
+        num_packets= 826
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100330
+        interarrival_avg= 9823
+        num_packets= 827
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100327
+        interarrival_avg= 9823
+        num_packets= 828
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100308
+        interarrival_avg= 9823
+        num_packets= 829
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100431
+        interarrival_avg= 9823
+        num_packets= 830
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 98981
+        interarrival_avg= 9823
+        num_packets= 831
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100202
+        interarrival_avg= 9823
+        num_packets= 832
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100597
+        interarrival_avg= 9823
+        num_packets= 833
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 98532
+        interarrival_avg= 9823
+        num_packets= 834
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100294
+        interarrival_avg= 9823
+        num_packets= 835
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 101217
+        interarrival_avg= 9823
+        num_packets= 836
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99768
+        interarrival_avg= 9823
+        num_packets= 837
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99392
+        interarrival_avg= 9823
+        num_packets= 838
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99911
+        interarrival_avg= 9823
+        num_packets= 839
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99863
+        interarrival_avg= 9823
+        num_packets= 840
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100062
+        interarrival_avg= 9823
+        num_packets= 841
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99696
+        interarrival_avg= 9823
+        num_packets= 842
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100739
+        interarrival_avg= 9823
+        num_packets= 843
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99127
+        interarrival_avg= 9823
+        num_packets= 844
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 101587
+        interarrival_avg= 9823
+        num_packets= 845
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99108
+        interarrival_avg= 9823
+        num_packets= 846
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100052
+        interarrival_avg= 9823
+        num_packets= 847
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100730
+        interarrival_avg= 9823
+        num_packets= 848
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 98902
+        interarrival_avg= 9823
+        num_packets= 849
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 107087
+        interarrival_avg= 9823
+        num_packets= 850
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 93053
+        interarrival_avg= 9823
+        num_packets= 851
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100373
+        interarrival_avg= 9823
+        num_packets= 852
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99881
+        interarrival_avg= 9823
+        num_packets= 853
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100427
+        interarrival_avg= 9823
+        num_packets= 854
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99335
+        interarrival_avg= 9823
+        num_packets= 855
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100125
+        interarrival_avg= 9823
+        num_packets= 856
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100110
+        interarrival_avg= 9823
+        num_packets= 857
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100131
+        interarrival_avg= 9823
+        num_packets= 858
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99714
+        interarrival_avg= 9823
+        num_packets= 859
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100339
+        interarrival_avg= 9823
+        num_packets= 860
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99873
+        interarrival_avg= 9823
+        num_packets= 861
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100025
+        interarrival_avg= 9823
+        num_packets= 862
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100470
+        interarrival_avg= 9823
+        num_packets= 863
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99490
+        interarrival_avg= 9823
+        num_packets= 864
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99926
+        interarrival_avg= 9823
+        num_packets= 865
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100205
+        interarrival_avg= 9823
+        num_packets= 866
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 99490
+        interarrival_avg= 9823
+        num_packets= 867
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 100607
+        interarrival_avg= 9823
+        num_packets= 868
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+
+###[ Ethernet ]###
+  dst       = 00:04:00:00:00:02
+  src       = 00:04:00:00:00:02
+  type      = IPv4
+###[ IP ]###
+     version   = 4
+     ihl       = 5
+     tos       = 0x0
+     len       = 44
+     id        = 1
+     flags     = 
+     frag      = 0
+     ttl       = 61
+     proto     = 255
+     chksum    = 0x65d1
+     src       = 10.0.1.1
+     dst       = 10.0.2.1
+     \options   \
+###[ interarrival ]###
+        interarrival_value= 31579
+        interarrival_avg= 9823
+        num_packets= 869
+        malicious_packet_flag= 1
+###[ Padding ]###
+           load      = b'\x00\x00\x00\x00\x00'
+

@@ -60,9 +60,15 @@ class interarrival(Packet):
     name="interarrival"
     fields_desc=[BitField("interarrival_value", 0, 48),
                  BitField("interarrival_avg", 0, 48),
-                 BitField("interarrival_stdev", 0, 48),
                  BitField("num_packets", 0, 48),
                  BitField("malicious_packet_flag", 0, 8)]
+    def extract_padding(self, p):
+        return "", p
+
+class saved_fields(Packet):
+    name="saved_fields"
+    fields_desc=[BitField("last_src_addr", 0, 32),
+                 BitField("last_checksum", 0, 16)]
     def extract_padding(self, p):
         return "", p
 
@@ -94,6 +100,7 @@ def main():
             if protocol == "interarrival":
                 print("matched protocol interarrival")
                 bind_layers(IP, interarrival)
+                bind_layers(interarrival, saved_fields)
     print("sniffing on %s" % iface)
     sys.stdout.flush()
     sniff(iface = iface,
